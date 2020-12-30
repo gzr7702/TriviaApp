@@ -5,23 +5,23 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
+set statement_timeout = 0;
+set lock_timeout = 0;
+set idle_in_transaction_session_timeout = 0;
+set client_encoding = 'UTF8';
+set standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+set check_function_bodies = false;
+set xmloption = content;
+set client_min_messages = warning;
+set row_security = off;
 
-SET default_tablespace = '';
+set default_tablespace = '';
 
-SET default_with_oids = false;
+set default_with_oids = false;
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: caryn
+-- Name: categories; Type: TABLE; Schema: public; Owner: boss
 --
 
 CREATE TABLE public.categories (
@@ -30,14 +30,13 @@ CREATE TABLE public.categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO caryn;
+ALTER TABLE public.categories OWNER TO boss;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: caryn
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: boss 
 --
 
 CREATE SEQUENCE public.categories_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -45,17 +44,17 @@ CREATE SEQUENCE public.categories_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.categories_id_seq OWNER TO caryn;
+ALTER TABLE public.categories_id_seq OWNER TO boss;
 
 --
--- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: caryn
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: boss 
 --
 
 ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: caryn
+-- Name: questions; Type: TABLE; Schema: public; Owner: boss 
 --
 
 CREATE TABLE public.questions (
@@ -67,14 +66,13 @@ CREATE TABLE public.questions (
 );
 
 
-ALTER TABLE public.questions OWNER TO caryn;
+ALTER TABLE public.questions OWNER TO boss;
 
 --
--- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: caryn
+-- Name: questions_id_seq; Type: SEQUENCE; Schema: public; Owner: boss 
 --
 
 CREATE SEQUENCE public.questions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -82,31 +80,31 @@ CREATE SEQUENCE public.questions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.questions_id_seq OWNER TO caryn;
+ALTER TABLE public.questions_id_seq OWNER TO boss;
 
 --
--- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: caryn
+-- Name: questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: boss 
 --
 
 ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 
 
 --
--- Name: categories id; Type: DEFAULT; Schema: public; Owner: caryn
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: boss
 --
 
-ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
-
-
---
--- Name: questions id; Type: DEFAULT; Schema: public; Owner: caryn
---
-
-ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.questions_id_seq'::regclass);
+ALTER TABLE ONLY public.categories ALTER COLUMN id set DEFAULT nextval('public.categories_id_seq'::regclass);
 
 
 --
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: caryn
+-- Name: questions id; Type: DEFAULT; Schema: public; Owner: boss
+--
+
+ALTER TABLE ONLY public.questions ALTER COLUMN id set DEFAULT nextval('public.questions_id_seq'::regclass);
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: boss
 --
 
 COPY public.categories (id, type) FROM stdin;
@@ -120,7 +118,7 @@ COPY public.categories (id, type) FROM stdin;
 
 
 --
--- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: caryn
+-- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: boss
 --
 
 COPY public.questions (id, question, answer, difficulty, category) FROM stdin;
@@ -147,21 +145,21 @@ COPY public.questions (id, question, answer, difficulty, category) FROM stdin;
 
 
 --
--- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: caryn
+-- Name: categories_id_seq; Type: SEQUENCE set; Schema: public; Owner: boss 
 --
 
 SELECT pg_catalog.setval('public.categories_id_seq', 6, true);
 
 
 --
--- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: caryn
+-- Name: questions_id_seq; Type: SEQUENCE set; Schema: public; Owner: boss 
 --
 
 SELECT pg_catalog.setval('public.questions_id_seq', 23, true);
 
 
 --
--- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: caryn
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: boss
 --
 
 ALTER TABLE ONLY public.categories
@@ -169,7 +167,7 @@ ALTER TABLE ONLY public.categories
 
 
 --
--- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: caryn
+-- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: boss
 --
 
 ALTER TABLE ONLY public.questions
@@ -177,11 +175,11 @@ ALTER TABLE ONLY public.questions
 
 
 --
--- Name: questions category; Type: FK CONSTRAINT; Schema: public; Owner: caryn
+-- Name: questions category; Type: FK CONSTRAINT; Schema: public; Owner: boss 
 --
 
 ALTER TABLE ONLY public.questions
-    ADD CONSTRAINT category FOREIGN KEY (category) REFERENCES public.categories(id) ON UPDATE CASCADE ON DELETE SET NULL;
+    ADD CONSTRAINT category FOREIGN KEY (category) REFERENCES public.categories(id) ON UPDATE CASCADE ON DELETE set NULL;
 
 
 --
