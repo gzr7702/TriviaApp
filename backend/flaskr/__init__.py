@@ -1,8 +1,9 @@
 import os
+import random
+
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
-import random
 
 from models import setup_db, Question, Category, db
 
@@ -14,15 +15,10 @@ def create_app(test_config=None):
   print("calling setup_db")
   setup_db(app)
   
-  '''
-  @TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
-  '''
+  #Set up CORS. Allow '*' for origins. 
   cors = CORS(app, resources={r"*": {"origins": "*"}})
 
-  '''
-  @TODO: Use the after_request decorator to set Access-Control-Allow
-  '''
-  # CORS Headers 
+  # Use the after_request decorator of CORS to set Access-Control-Allow
   @app.after_request
   def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
@@ -40,12 +36,9 @@ def create_app(test_config=None):
   @cross_origin()
   def get_categories():
        try:
-            q = Question("wha?", "yeah", "Art", 1)
-            q.insert()
-            print(q)
-            return "It works."
+         return "It works."
        except:
-            return 'Something is broken.'
+         return 'Something is broken.'
 
 
   '''
