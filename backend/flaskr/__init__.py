@@ -45,7 +45,10 @@ def create_app(test_config=None):
   def get_category(category_id):
        try:
          cat = db.session.query(Category).filter_by(id=category_id).first()
-         return type(cat)
+         return jsonify({
+              'category': cat.format()
+         })
+
        except:
          return 'Something is broken.'
 
