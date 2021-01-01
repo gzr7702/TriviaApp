@@ -12,7 +12,6 @@ QUESTIONS_PER_PAGE = 10
 def create_app(test_config=None):
   # create and configure the app
   app = Flask(__name__)
-  print("calling setup_db")
   setup_db(app)
   
   #Set up CORS. Allow '*' for origins. 
@@ -26,20 +25,29 @@ def create_app(test_config=None):
     return response
 
 
+  # test endpoint for root 
+  @app.route('/')
+  @cross_origin()
+  def get_root():
+       try:
+         return jsonify({"message": "root"})
+       except:
+         return 'Something is broken.'
+
   '''
   @TODO: 
   Create an endpoint to handle GET requests 
   for all available categories.
   '''
 
-  @app.route('/')
+  @app.route('/categories/<int:category_id>')
   @cross_origin()
-  def get_categories():
+  def get_category(category_id):
        try:
-         return "It works."
+         cat = db.session.query(Category).filter_by(id=category_id).first()
+         return type(cat)
        except:
          return 'Something is broken.'
-
 
   '''
   @TODO: 
@@ -53,6 +61,16 @@ def create_app(test_config=None):
   ten questions per page and pagination at the bottom of the screen for three pages.
   Clicking on the page numbers should update the questions. 
   '''
+
+  @app.route('/questions')
+  @cross_origin()
+  def get_questions():
+       try:
+         questions = db.session.query(Question).all()
+         import pdb; pdb.set_trace()
+         return jsonify({"message": questions})
+       except:
+         return 'Something is broken.'
 
   '''
   @TODO: 

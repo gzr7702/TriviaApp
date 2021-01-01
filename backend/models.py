@@ -8,7 +8,7 @@ import json
 database_name = "trivia"
 usr = credentials["usr"]
 pwd = credentials["pwd"]
-database_path = "postgresql://{}:{}@{}/".format(
+database_path = "postgresql://{}:{}@{}/{}".format(
     usr, pwd, "localhost:5432", database_name
 )
 
