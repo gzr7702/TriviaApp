@@ -66,9 +66,15 @@ def create_app(test_config=None):
   @cross_origin()
   def get_questions():
        try:
+         page = request.args.get('page', 1, type=int)
+         start = (page-1) * 10
+         end = start + 10
          questions = db.session.query(Question).all()
-         import pdb; pdb.set_trace()
-         return jsonify({"message": questions})
+         formatted_questions = [q.format() for q in questions]
+         return jsonify({
+              'success': True,
+              'questions': formatted_questions[start:end]
+              })
        except:
          return 'Something is broken.'
 
